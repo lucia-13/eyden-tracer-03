@@ -1,18 +1,20 @@
 #include "Scene.h"
 
 #include "CameraPerspective.h"
-
-#include "PrimSphere.h"
-#include "PrimPlane.h"
-#include "PrimTriangle.h"
+#include "LightPoint.h"
+#include "LightArea.h"
+#include "timer.h"
 
 #include "ShaderFlat.h"
 #include "ShaderEyelight.h"
 #include "ShaderPhong.h"
+#include "PrimSphere.h"
+#include "PrimPlane.h"
+#include "PrimTriangle.h"
 
-#include "LightPoint.h"
-#include "LightArea.h"
-#include "timer.h"
+
+
+
 
 Mat RenderFrame(void)
 {
@@ -20,12 +22,9 @@ Mat RenderFrame(void)
 	CScene scene;
 	
 	// Load scene description
-	scene.ParseOBJ("../../../data/cow.obj");
+	scene.ParseOBJ("data/cow.obj");
 
-#ifdef ENABLE_BSP
-	// Build BSPTree
-	scene.BuildAccelStructure();
-#endif
+
 	
 	Vec3f pointLightIntensity(3, 3, 3);
 	Vec3f lightPosition2(-3, 5, 4);
